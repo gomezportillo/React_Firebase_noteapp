@@ -20,14 +20,25 @@ class App extends React.Component
 
   render()
   {
-
     return(
       <div className="app-container">
         <SidebarComponent selectedNoteIndex={this.state.selectedNoteIndex}
                           notes={this.state.notes}
+                          deleteNote={this.deleteNote}
+                          selecNote={this.selectNote}
+                          newNote={this.newNote}
           />
         <div style={{height: '750px'}}>
-          <EditorComponent />
+          {
+            this.state.selectedNote ?
+              <EditorComponent selectedNote={this.state.selectedNote}
+                               selectedNoteIndex={this.state.selectedNoteIndex}
+                               notes={this.state.notes}
+              >
+              </EditorComponent>
+            :
+            null
+          }
         </div>
       </div>
     )
@@ -43,10 +54,17 @@ class App extends React.Component
         data['id'] = _doc.id
         return data
       })
-      console.log(notes)
+
       this.setState({
         notes: notes
       })
+    })
+  }
+
+  selectNote = (note, index) => {
+    this.setState({
+      selectedNoteIndex: index,
+      selectedNote: note
     })
   }
 }

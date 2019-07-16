@@ -17,6 +17,17 @@ class EditorComponent extends React.Component
     }
   }
 
+  componentDidMount = () => {
+    this.updateStateFromProps()
+  }
+
+  componentDidUpdate = () => {
+    if (this.props.selectedNote.id !== this.state.id)
+    {
+      this.updateStateFromProps()
+    }
+  }
+
   render()
   {
     const { classes } = this.props;
@@ -27,6 +38,14 @@ class EditorComponent extends React.Component
         />
       </div>
     )
+  }
+
+  updateStateFromProps = () => {
+    this.setState({
+      text: this.props.selectedNote.body,
+      title: this.props.selectedNote.title,
+      id: this.props.selectedNote.id
+    })
   }
 
   updateBody = async(val) =>
