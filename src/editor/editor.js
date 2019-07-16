@@ -57,7 +57,8 @@ class EditorComponent extends React.Component
   }
 
   update = debounce(() => {
-    console.log("debouncing!!")
+    var note = {title: this.state.title, body:  this.state.text}
+    this.props.noteUpdate(this.state.id, note)
   }, 1500) // wait  1.5 secs from the moment the user stops writing
 }
 
