@@ -15,7 +15,7 @@ firebase.initializeApp({
   storageBucket: "noteapp-d1a4b.appspot.com",
   messagingSenderId: "304585345640",
   appId: "1:304585345640:web:71188cf4f0165ed9"
-})f
+})
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
