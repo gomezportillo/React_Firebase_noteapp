@@ -14,11 +14,11 @@ class SidebaritemComponent extends React.Component
 
   render()
   {
-    return({
+    return(
       <div>
         Hello from the sidebaritem
       </div>
-    })
+    )
   }
 }
 

@@ -10,16 +10,36 @@ class EditorComponent extends React.Component
   constructor()
   {
     super()
+    this.state = {
+      text: '',
+      title: '',
+      id: ''
+    }
   }
 
   render()
   {
-    return({
-      <div>
-        Hello from the editor
+    const { classes } = this.props;
+    return(
+      <div className = {classes.editorContainer}>
+        <ReactQuill value={this.state.text}
+                    onChange={this.updateBody}
+        />
       </div>
-    })
+    )
   }
+
+  updateBody = async(val) =>
+  {
+    await this.setState({
+      text: val
+    })
+    this.update()
+  }
+
+  update = debounce(() => {
+    console.log("debouncing!!")
+  }, 1500) // wait  1.5 secs from the moment the user stops writing
 }
 
 export default withStyles(styles)(EditorComponent)
